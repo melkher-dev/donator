@@ -82,6 +82,7 @@
 
 @section('scripts')
 
+//график суммы с js
 <script type="text/javascript">
             google.charts.load('current', {'packages':['corechart']});
             google.charts.setOnLoadCallback(drawChart);

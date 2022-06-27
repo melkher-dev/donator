@@ -6,8 +6,14 @@ use App\Models\Donation;
 use Illuminate\Support\Carbon;
 use Illuminate\Routing\Controller;
 
+/**
+ * DashboardController
+ */
 class DashboardController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+     */
     public function index()
     {
         //переменные на начало и конец прошлого месяца
@@ -26,7 +32,7 @@ class DashboardController extends Controller
                 ->where('created_at', '<=', $lastDayOfPreviousMonth)
                 ->sum('amount'),
 
-                //график
+                //график я хз шо тут
             'chart' => Donation::selectRaw('DATE(created_at) as date, SUM(amount) as amount')
                 ->groupBy('date')
                 ->orderBy('date', 'asc')
