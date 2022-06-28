@@ -21,8 +21,8 @@
             </button> --}}
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link" href="{{ 'dashboard' }}">Dashboard</a>
-                    <a class="nav-link" href="{{ 'donations' }}">Donations</a>
+                    <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+                    <a class="nav-link" href="{{ route('donations') }}">Donations</a>
                 </div>
             </div>
         </div>

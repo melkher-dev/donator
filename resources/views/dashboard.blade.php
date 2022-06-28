@@ -3,45 +3,19 @@
 @section('content')
 <div class="d-flex justify-content-center mt-2">
     <div class="card-group">
-
-        <div class="m-2">
-            <div class="card" style="background-color: coral">
-                <div class="card-body">
-                    Biggest donation:
-                    <br>
-                    <h3>{{ $biggestDonation->amount }} карбованцiв</h3>
-                    <h3>by: {{ $biggestDonation->donator_name }}</h3>
-                </div>
-                {{-- <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                </div> --}}
-            </div>
-        </div>
-
-        <div class="m-2">
-            <div class="card" style="background-color: coral">
-                <div class="card-body">
-                    Total donations for last month:
-                    <br>
-                    <h3>{{ $lastMonth }} карбованцiв</h3>
-                </div>
-                {{-- <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                </div> --}}
-            </div>
-        </div>
-
-        <div class="m-2">
-            <div class="card" style="background-color: coral">
-                <div class="card-body">
-                    Total donations for all time:<br>
-                    <h3>{{ $summ}} карбованцiв</h3>
-                </div>
-                {{-- <div class="card-footer">
-                    <small class="text-muted">Result</small>
-                </div> --}}
-            </div>
-        </div>
+        <x-widget
+            header="Biggest donation"
+            amount="{{ $biggestDonation->amount }}"
+            donator="{{ $biggestDonation->donator_name }}"
+        ></x-widget>
+        <x-widget
+            header="Total donations for last month"
+            amount="{{ $lastMonth }}"
+        ></x-widget>
+        <x-widget
+            header="Total donations for all time"
+            amount="{{ $summ }}"
+        ></x-widget>
     </div>
 </div>
 
@@ -82,9 +56,9 @@
 
 @section('scripts')
 
-//график суммы с js
+{{-- график суммы с js --}}
 <script type="text/javascript">
-            google.charts.load('current', {'packages':['corechart']});
+    google.charts.load('current', {'packages':['corechart']});
             google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {

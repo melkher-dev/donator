@@ -19,10 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])
+Route::get('/dashboard', [DonationController::class, 'index'])
     ->name('dashboard');
 
-Route::get('/donations', [DonationController::class, 'index'])
+Route::get('/donations/create', [DonationController::class, 'create'])
     ->name('donations');
 
 Route::post('/donations', [DonationController::class, 'store'])
