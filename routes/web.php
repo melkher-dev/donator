@@ -15,11 +15,7 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', [DonationController::class, 'index'])
+Route::get('/', [DonationController::class, 'index'])
     ->name('dashboard');
 
 Route::get('/donations/create', [DonationController::class, 'create'])

@@ -24,8 +24,8 @@ class StoreDonationRequest extends FormRequest
     public function rules()
     {
         return [
-            'donator_name' => 'required|alpha|max:50',
-            'email' => 'required|email|unique:donations',
+            'donator_name' => 'required|string|max:50',
+            'email' => 'required|email',
             'amount' => 'required|integer',
             'message' => 'nullable|max:140',
         ];
