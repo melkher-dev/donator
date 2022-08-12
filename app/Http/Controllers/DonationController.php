@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDonationRequest;
 use App\Services\DonationService;
+use Illuminate\Http\Request;
 
 class DonationController extends Controller
 {
@@ -19,7 +20,7 @@ class DonationController extends Controller
         $this->donationService = $donationService;
     }
 
-     /**
+    /**
      * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
     public function index()
@@ -49,5 +50,21 @@ class DonationController extends Controller
         ));
 
         return redirect()->route('dashboard');
+    }
+
+    /**
+     * getChartsDataByDate
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function getChartsDataByDate(Request $request)
+    {
+        return response()->json($this->donationService->searchDate($request->startDate, $request->endDate));
+    }
+
+    public function searchDonator(Request $request)
+    {
+        return view('newTable', ['donations' => $this->donationService->searchDonatorName($request->search)]);
     }
 }

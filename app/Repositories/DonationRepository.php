@@ -16,7 +16,7 @@ class DonationRepository
 
     public function getPaginatedDonations()
     {
-        return  $this->model->paginate(5);
+        return  $this->model->paginate(10);
     }
 
     //сумма всех донатов
@@ -58,5 +58,25 @@ class DonationRepository
         $this->model->amount = $data['amount'];
         $this->model->message = $data['message'];
         $this->model->save();
+    }
+
+    public function searchDate($fromDate, $toDate)
+    {
+        $from = date($fromDate);
+        $to = date($toDate);
+
+        return  $this->model->selectRaw('DATE(created_at) as date, SUM(amount) as amount')
+            ->groupBy('date')
+            ->orderBy('date', 'asc')
+            ->whereBetween('created_at', [$from, $to])
+            ->get()
+            ->map(function ($row) {
+                return [$row->date, (int) $row->amount];
+            });
+    }
+
+    public function searchDonatorName($value)
+    {
+        return $this->model->where('donator_name', 'LIKE', '%' . $value . '%')->orWhere('email', 'LIKE', '%' . $value . '%')->get();
     }
 }

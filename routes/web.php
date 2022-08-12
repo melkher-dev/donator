@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DonationController;
-use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +22,9 @@ Route::get('/donations/create', [DonationController::class, 'create'])
 
 Route::post('/donations', [DonationController::class, 'store'])
     ->name('donations.store');
+
+Route::post('/chartsdata', [DonationController::class, 'getChartsDataByDate'])
+    ->name('charts.date');
+
+Route::post('/searchDonator', [DonationController::class, 'searchDonator'])
+    ->name('search1');

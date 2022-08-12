@@ -2,8 +2,6 @@
 
 namespace App\Services;
 
-use Carbon\Carbon;
-use App\Models\Donation;
 use App\Repositories\DonationRepository;
 
 class DonationService
@@ -29,5 +27,15 @@ class DonationService
     public function saveData(array $data)
     {
         $this->donationRepository->saveDonate($data);
+    }
+
+    public function searchDate($fromDate, $toDate)
+    {
+        return $this->donationRepository->searchDate($fromDate, $toDate);
+    }
+
+    public function searchDonatorName($value)
+    {
+        return $this->donationRepository->searchDonatorName($value);
     }
 }
